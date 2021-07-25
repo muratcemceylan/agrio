@@ -1,0 +1,45 @@
+<div class="container top-ofset">
+    <div class="row justify-content-md-center conty-back">      
+      <div class="col-lg-8 col-lg-auto">
+          <h3>Depo Tanımlama</h3>
+        <form #f="ngForm" (ngSubmit)="save(f.value)">
+            <div class="form-group">
+                <label for="depoName">Depo Adı</label>
+                <input #depoName="ngModel" ngModel name="depoName" id="depoName" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="depoName.touched && depoName.invalid"> Depo Adı boş geçemezsiniz</div>
+            </div>
+            <div class="form-group half-ofset">
+                <label for="il">İl</label>
+                <select #il="ngModel" ngModel name="il" id="il" class="form-control" (change)="onSelect($event)" required>
+                    <option value="">İl Seçiniz</option>
+                    <option *ngFor="let il of iller" value="{{ il.id }}">{{ il.name }}</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="il.touched && il.invalid"> İl seçmeniz gerekmektedir.</div>
+            </div>
+            <div class="form-group half-ofset">
+                <label for="ilce">İlçe</label>
+                <select #ilce="ngModel" ngModel name="ilce" id="ilce" class="form-control" required>
+                    <option value="">İlçe Seçiniz</option>
+                    <option *ngFor="let ilce of ilceler" value="{{ ilce.ilce_id }}">{{ ilce.ilce_title }}</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="ilce.touched && ilce.invalid"> İlçe seçmeniz gerekmektedir. </div>
+            </div>
+            <div class="form-group half-ofset">
+                <label for="adres">Adres</label>
+                <input #adres="ngModel" ngModel name="adres" id="adres" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="adres.touched && adres.invalid"> Adres Alanı boş olamaz</div>
+            </div>
+            <div class="form-group half-ofset">
+                <label for="aciklama">Açıklama</label>
+                <input #aciklama="ngModel" ngModel name="aciklama" id="aciklama" type="text" class="form-control" required>                
+                <div class="alert alert-danger" *ngIf="aciklama.touched && aciklama.invalid"> Lütfen Açıklama giriniz </div>
+            </div>
+            
+            <div class="form-group half-ofset">
+                <button class="btn btn-primary">Kaydet</button>
+            </div>
+        </form>
+      </div>      
+    </div>
+    
+</div>

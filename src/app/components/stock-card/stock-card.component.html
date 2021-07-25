@@ -1,0 +1,44 @@
+<div class="container top-ofset">
+    <div class="row justify-content-md-center conty-back">      
+      <div class="col-lg-8 col-lg-auto">
+          <h3>Yeni Stok Kartı</h3>
+        <form #f="ngForm" >
+            <div class="form-group">
+                <label for="stokKodu">Stok Kodu</label>
+                <input #stokKodu="ngModel" ngModel name="stokKodu" id="stokKodu" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="stokKodu.touched && stokKodu.invalid"> Stok Kodunu boş geçemezsiniz</div>
+            </div>
+            <div class="form-group">
+                <label for="stokKodu">Stok Adı</label>
+                <input #stokAdi="ngModel" ngModel name="stokAdi" id="stokAdi" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="stokAdi.touched && stokAdi.invalid"> Stok Adını boş geçemezsiniz</div>
+            </div>
+            <div class="form-group half-ofset">
+                <label for="unitSet">UnitSet</label>
+                <select #unitSet="ngModel" ngModel name="unitSet" id="unitSet" class="form-control" required>
+                    <option value="">Seçiniz</option>
+                    <option value="1">Ağırlık</option>
+                    <option value="2">Hacim</option>
+                    <option value="3">Miktar</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="unitSet.touched && unitSet.invalid"> Unitset seçmeniz gerekmektedir.</div>
+            </div>
+            <div class="form-group half-ofset">
+                <label for="unit">Ünite</label>
+                <select #unit="ngModel" ngModel name="unit" id="unit" class="form-control" required>
+                    <option value="">Seçiniz</option>
+                    <option value="1">ton</option>
+                    <option value="2">kg</option>
+                    <option value="3">gr</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="unit.touched && unit.invalid"> Unit seçmeniz gerekmektedir.</div>
+            </div>
+            
+            <div class="form-group half-ofset">
+                <button class="btn btn-primary">Kaydet</button>
+            </div>
+        </form>
+      </div>      
+    </div>
+    
+</div>

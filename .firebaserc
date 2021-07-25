@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "agrio-964b6": {
+      "hosting": {
+        "agrio": [
+          "agrio-964b6"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "agrio-964b6"
+  }
+}

@@ -1,0 +1,45 @@
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li class="nav-item"><a routerLink="/" class="nav-link px-2 text-white">Anasayfa</a></li>
+          <li class="nav-item" *ngIf="auth.user$ | async as user">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Depo</a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a  routerLink="/depo-tanim" ngbDropdownItem>Depo Tanım</a>
+              <a routerLink="/depo-liste"  ngbDropdownItem>Depo Liste</a>
+            </div>
+          </div>
+          </li>
+          <li class="nav-item" *ngIf="auth.user$ | async as user">
+            <div ngbDropdown class="d-inline-block">
+              <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Stok</a>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <a routerLink="/yeni-stok-karti"  ngbDropdownItem>Yeni Stok Kartı </a>
+                <a routerLink="/stoklarim"  ngbDropdownItem>Stoklarım </a>
+                <a routerLink="/stok-acilis-bakiyesi-giris"  ngbDropdownItem>Stok Açılış Bakiyesi Giriş </a>
+                <a routerLink="/stok-hareketleri"  ngbDropdownItem>Stok Hareketleri </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <div class="text-end">
+              <ng-template #anonymousUser>
+                <a routerLink="/login" class="nav-link px-2 text-white">Login</a>
+              </ng-template>
+            <div ngbDropdown class="d-inline-block" *ngIf="auth.user$ | async as user; else anonymousUser" >
+              <a class="nav-link" id="dropdownForm1" ngbDropdownToggle >{{ user.displayName }}  </a>                               
+              <div ngbDropdownMenu aria-labelledby="dropdownForm1">    
+                <button ngbDropdownItem (click)="logout()">Log out</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
