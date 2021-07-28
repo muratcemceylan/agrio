@@ -11,10 +11,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr *ngFor="let depo of depos_Angular | async">
+                        <td>{{ depo.depoName }}</td>
+                        <td>{{ depo.il }}</td>
+                        <td>{{ depo.ilce }}</td>
                     </tr>
                 </tbody>
             </table>

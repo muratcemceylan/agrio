@@ -31,11 +31,11 @@ export class NewStoreComponent   {
 
   save(depo:any){
     let deponow = depo;
-    let ilName = this.iller.filter(e => e.id == depo.il);
-    let ilceName = this.ilceler.filter(e => e.ilce_sehirkey == depo.il );      
-    ilceName = this.ilceler.filter(e => e.ilce_id == depo.ilce );
-    deponow['il'] = ilName[0]['name'];
-    deponow['ilce'] = ilceName[0]['ilce_title'];
+    let ilName = this.iller.filter(e => e.id == depo.il);    
+    let ilceName = this.ilceler.filter(e => e.ilce_sehirkey == depo.il );          
+    ilceName = this.ilceler.filter(e => e.ilce_id == depo.ilce );    
+    deponow['il'] = ilName[0]['name'];    
+    deponow['ilce'] = ilceName[0]['ilce_title'];    
     this.depoService.create(deponow);
   }
 

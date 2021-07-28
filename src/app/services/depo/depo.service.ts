@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 
@@ -6,6 +7,7 @@ import { Injectable } from '@angular/core';
 })
 
 export class DepoService {
+
   
   constructor(private db: AngularFireDatabase ) { }
 
