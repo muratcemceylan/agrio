@@ -2,7 +2,7 @@
     <div class="row justify-content-md-center conty-back">      
       <div class="col-lg-8 col-lg-auto">
           <h3>Yeni Stok Kartı</h3>
-        <form #f="ngForm" >
+        <form #fs="ngForm" (ngSubmit)="save(fs.value)">
             <div class="form-group">
                 <label for="stokKodu">Stok Kodu</label>
                 <input #stokKodu="ngModel" ngModel name="stokKodu" id="stokKodu" type="text" class="form-control" required>
@@ -17,25 +17,70 @@
                 <label for="unitSet">UnitSet</label>
                 <select #unitSet="ngModel" ngModel name="unitSet" id="unitSet" class="form-control" required>
                     <option value="">Seçiniz</option>
-                    <option value="1">Ağırlık</option>
-                    <option value="2">Hacim</option>
-                    <option value="3">Miktar</option>
+                    <option value="weight">Ağırlık</option>
+                    <option value="volume">Hacim</option>
+                    <option value="quantity">Miktar</option>
                 </select>
                 <div class="alert alert-danger" *ngIf="unitSet.touched && unitSet.invalid"> Unitset seçmeniz gerekmektedir.</div>
             </div>
-            <div class="form-group half-ofset">
+            
+            <div class="form-group half-ofset" *ngIf="unitSet.value == 'weight'">
+                <label for="quantity">Miktar</label>
+                <input #quantity="ngModel" ngModel name="quantity" id="quantity" type="text" class="form-control">
+                <div class="alert alert-danger" *ngIf="quantity.touched && quantity.invalid"> Miktar alanı hatalı</div>
+            </div>
+            
+            <div class="form-group half-ofset" *ngIf="unitSet.value == 'volume' || unitSet.value == 'quantity'">
+                <label for="package">Birim</label>
+                <input #package="ngModel" ngModel name="package" id="package" type="text" class="form-control">
+                <div class="alert alert-danger" *ngIf="package.touched && package.invalid"> Birim alanı hatalı</div>
+            </div>
+
+            <div class="form-group half-ofset" *ngIf="unitSet.value == 'weight'">
                 <label for="unit">Ünite</label>
                 <select #unit="ngModel" ngModel name="unit" id="unit" class="form-control" required>
                     <option value="">Seçiniz</option>
-                    <option value="1">ton</option>
-                    <option value="2">kg</option>
-                    <option value="3">gr</option>
+                    <option value="tons">ton</option>
+                    <option value="kgs">kg</option>
+                    <option value="grs">gr</option>
                 </select>
                 <div class="alert alert-danger" *ngIf="unit.touched && unit.invalid"> Unit seçmeniz gerekmektedir.</div>
             </div>
             
+
+            <div class="form-group">
+                <label for="barcode">Barkod</label>
+                <input #barcode="ngModel" ngModel name="barcode" id="barcode" type="text" class="form-control">
+                <div class="alert alert-danger" *ngIf="barcode.touched && barcode.invalid"> Barkodu alanı hatalı</div>
+            </div>
+            <div class="form-group">
+                <label for="aciklama">Açıklama</label>
+                <input #aciklama="ngModel" ngModel name="aciklama" id="aciklama" type="text" class="form-control">
+                <div class="alert alert-danger" *ngIf="aciklama.touched && aciklama.invalid"> Açıklama alanı hatalı</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="cost">Alış Fiyatı</label>
+                <input #cost="ngModel" ngModel name="cost" id="cost" type="text" class="form-control">
+                <div class="alert alert-danger" *ngIf="cost.touched && cost.invalid"> Alış Fiyatı alanı hatalı</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="price">Satış Fiyatı</label>
+                <input #price="ngModel" ngModel name="price" id="price" type="text" class="form-control">
+                <div class="alert alert-danger" *ngIf="price.touched && price.invalid"> Satış Fiyatı alanı hatalı</div>
+            </div>
+            <div class="form-group half-ofset">
+                <label for="depo">Depo</label>
+                <select #depo="ngModel" ngModel name="depo" id="depo" class="form-control" >
+                    <option [ngValue]="depo" *ngFor="let depo of depos_Angular | async"> {{ depo.depoName }} </option>
+                </select>
+            </div>
             <div class="form-group half-ofset">
                 <button class="btn btn-primary">Kaydet</button>
+            </div>
+            <div class="alert alert-primary half-ofset" role="alert" *ngIf="submitted">
+                Kayit Tamamlandı. 
             </div>
         </form>
       </div>      

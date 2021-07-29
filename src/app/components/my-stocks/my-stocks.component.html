@@ -1,1 +1,27 @@
-<p>my-stocks works!</p>
+<div class="container top-ofset">
+    <div class="row justify-content-md-center conty-back">      
+        <div class="col-lg-8 col-lg-auto">
+            <h3>Depo Liste</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Stok Kodu</th>
+                        <th>Stok Adı</th>
+                        <th>Barcode No</th>
+                        <th>Miktar</th>
+                        <th>Unit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let stock of stocks_Angular | async">
+                        <td>{{ stock.stokKodu }}</td>
+                        <td>{{ stock.stokAdi }}</td>
+                        <td>{{ stock.barcode }}</td>
+                        <td>{{ stock.quantity }}</td>
+                        <td>{{ stock.unit }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>      
+    </div>
+</div>

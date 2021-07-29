@@ -20,7 +20,7 @@
                 <label for="ilce">İlçe</label>
                 <select #ilce="ngModel" ngModel name="ilce" id="ilce" class="form-control" required>
                     <option value="">İlçe Seçiniz</option>
-                    <option *ngFor="let ilce of ilceler" value="{{ ilce.ilce_id }}">{{ ilce.ilce_title }}</option>
+                    <option *ngFor="let ilce of ilceler" value="{{ ilce.ilce_id }}">{{ ilce.ilce_title | titlecase}}</option>
                 </select>
                 <div class="alert alert-danger" *ngIf="ilce.touched && ilce.invalid"> İlçe seçmeniz gerekmektedir. </div>
             </div>
@@ -38,6 +38,10 @@
             <div class="form-group half-ofset">
                 <button class="btn btn-primary">Kaydet</button>
             </div>
+            <div class="alert alert-primary half-ofset" role="alert" *ngIf="submitted">
+                Kayit Tamamlandı. 
+            </div>
+
         </form>
       </div>      
     </div>
